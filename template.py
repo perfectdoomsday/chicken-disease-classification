@@ -21,7 +21,8 @@ list_of_files = [ #Just add a name to create a file,  like: "subdir/filename.py"
     "requirements.txt",
     "setup.py",
     "research/trials.ipynb", # Research before implementation of the model, to keep track of the experiments
-    "test.py"
+    "templates/index.html"
+    
 ]
 
 
