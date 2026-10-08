@@ -41,6 +41,77 @@ stages:
     outs:
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: ab312b5a880fd0c8ea0f4c906b655fb0.dir
+      md5: 23b55e48d79d09eeb81a07aca0bed449.dir
       size: 118075312
       nfiles: 2
+  training:
+    cmd: python src/cnn_model/pipeline/stage_03_training.py
+    deps:
+    - path: artifacts/data_ingestion/Chicken-fecal-images
+      hash: md5
+      md5: 9e1f8dd2eae3c29e9d635df89d438ae4.dir
+      size: 12207807
+      nfiles: 390
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 23b55e48d79d09eeb81a07aca0bed449.dir
+      size: 118075312
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 54ea9e9e0bb15778183a088920610a00
+      size: 831
+    - path: src/cnn_model/components/prepare_callbacks.py
+      hash: md5
+      md5: 181e3742f353f6f104aea449c5e70768
+      size: 1002
+    - path: src/cnn_model/pipeline/stage_03_training.py
+      hash: md5
+      md5: 3c4e89896c424baf6909487f23a1dc4c
+      size: 1248
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 16
+        EPOCHS: 1
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: ab84e6f30db53d2a8c19c5f30ff20a96
+      size: 59552488
+  evaluation:
+    cmd: python src/cnn_model/pipeline/stage_04_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/Chicken-fecal-images
+      hash: md5
+      md5: 9e1f8dd2eae3c29e9d635df89d438ae4.dir
+      size: 12207807
+      nfiles: 390
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: ab84e6f30db53d2a8c19c5f30ff20a96
+      size: 59552488
+    - path: config/config.yaml
+      hash: md5
+      md5: 54ea9e9e0bb15778183a088920610a00
+      size: 831
+    - path: src/cnn_model/pipeline/stage_04_evaluation.py
+      hash: md5
+      md5: 3b6530f52b0bb93195a5418056522b48
+      size: 867
+    params:
+      params.yaml:
+        BATCH_SIZE: 16
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 80597b895bd44c8dbd796bfc707c1ac4
+      size: 73
