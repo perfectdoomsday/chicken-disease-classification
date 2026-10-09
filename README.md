@@ -67,7 +67,7 @@ dvc dag
 2. AmazonEC2FullAccess
 
 3. Create ECR repo to store/save docker image
-- Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/chicken
+- Save the URI: 869482775250.dkr.ecr.eu-north-1.amazonaws.com/mlp-chicken
 
 4. Create EC2 machine (Ubuntu)
 
