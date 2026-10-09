@@ -1,0 +1,41 @@
+
+# Git
+.git
+.gitignore
+
+# Python virtual environments and cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter notebooks and checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+# Datasets - not needed for inference
+artifacts/data_ingestion/Chicken-fecal-images/
+artifacts/data_ingestion/data.zip
+inputImage.jpg
+
+# Training checkpoints and TensorBoard logs
+artifacts/prepare_callbacks/checkpoint_dir/
+artifacts/prepare_callbacks/tensorboard_log_dir/
+
+# Logs
+logs/
+research/logs/
+*.log
+
+# DVC local cache
+.dvc/cache/
+
+# OS files
+.DS_Store
+Thumbs.db
